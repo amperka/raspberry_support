@@ -4,39 +4,38 @@ Also the source code for every chapter is provided.
 
 ![Image](/images/title.png)   
 
-##Setup
+## Setup
 If you've got no spare monitor or keyboard you may connect Raspberry Pi via SSH, VNC and FTP protocols.
 Full instruction is provided starting on page 56 of the book. Here are all third party programms you need for that.
 
-###For Windows
+### For Windows
 [Angry IP Scanner](http://github.com)
 [Putty](http://github.com)
 [VNC-Viewer](http://github.com)
 [FileZilla](http://github.com)
-###For MacOS
+### For MacOS
 [Angry IP Scanner](http://github.com)
 [VNC-Viewer](http://github.com)
 [FileZilla](http://github.com)
 
-===== Настройка Wi-Fi =====
+## Wi-Fi
 
-Подключись к Raspberry Pi по SSH.
+Connect to Raspberry Pi via SSH.
 
-Открой в текстовом редакторе «nano» файл настроек Wi-Fi.
-Для этого введи команду
+Open the Wi-Fi configuration file using the built in text editor "Nano"   
+In order to do this, enter the following line:   
+```python
+sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
+```
+And hit Enter.
 
-<code>~ $ sudo nano /etc/wpa_supplicant/wpa_supplicant.conf</code>
-
-и нажми Enter.
-
-Откроется файл, в конце добавь параметры сети.
-
-<code>
+The file opens. Add your network parameters as follows:
+```python
 network={
-    ssid="имя твоего wi-fi"
-    psk="пароль твоего wi-fi"
+    ssid="your wi-fi name"
+    psk="your wi-fi password"
 }
-</code>
+```
 
 Закрой файл сочетанием клавиш ctrl+X (cmd+X для Mac OS) на клавиатуре. Редактор спросит, сохранить ли изменения. Нажми
 клавишу Y (да), а затем Enter. Выполни перезагрузку системы командой ''sudo reboot''
