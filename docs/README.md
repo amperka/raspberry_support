@@ -2,21 +2,21 @@
 Welcome to Raspberry Kit support page. Here you can download all files necessary for our Kit completion.   
 Also the source code for every chapter is provided.   
 
-![Image](/images/title.png)   
+![Image](/docs/images/title.png)   
 
 ## Setup
 If you've got no spare monitor or keyboard you may connect Raspberry Pi via SSH, VNC and FTP protocols.
 Full instruction is provided starting on page 56 of the book. Here are all third party programms you need for that.
 
-### For Windows
-[Angry IP Scanner](http://github.com)
-[Putty](http://github.com)
-[VNC-Viewer](http://github.com)
-[FileZilla](http://github.com)
-### For MacOS
-[Angry IP Scanner](http://github.com)
-[VNC-Viewer](http://github.com)
-[FileZilla](http://github.com)
+## # For Windows
+- [Angry IP Scanner](http://github.com)
+- [Putty](http://github.com)
+- [VNC-Viewer](http://github.com)
+- [FileZilla](http://github.com)
+## # For MacOS
+- [Angry IP Scanner](http://github.com)
+- [VNC-Viewer](http://github.com)
+- [FileZilla](http://github.com)
 
 ## Wi-Fi
 
@@ -29,7 +29,7 @@ sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
 ```
 And hit Enter.
 
-The file opens. Add your network parameters as follows:
+The file will open. Add your network parameters as follows:
 ```python
 network={
     ssid="your wi-fi name"
@@ -37,29 +37,32 @@ network={
 }
 ```
 
-Закрой файл сочетанием клавиш ctrl+X (cmd+X для Mac OS) на клавиатуре. Редактор спросит, сохранить ли изменения. Нажми
-клавишу Y (да), а затем Enter. Выполни перезагрузку системы командой ''sudo reboot''
+Close the file using keyboard shortcut ctrl+X (cmd+X for Mac OS). Nano will ask if you want to save the changes.    
+Press Y (Yes), then Enter.    
+Reboot the system via command `sudo reboot`
 
-<code>~ $ sudo reboot</code>
+```python
+sudo reboot
+```
 
-После перезагрузки отсоедини кабель Ethernet и работай с Расберри через Wi-Fi.
+After the reboot, disconnect the Ethernet cable and now you can control your Raspberry Pi via Wi-Fi.
 
-===== Ресурсы =====
-  * {{ :malina:putty-64bit-0.71-installer.zip |Putty}}
-  * {{ :malina:filezilla_3.41.2_win64_sponsored-setup.zip |Filezilla}}
-  * {{ :malina:vnc-viewer-6.19.107-windows.zip |Vnc-viewer}}
-  * {{ :malina:ipscan-3.5.5-setup.zip |Angry IP Scaner}}
-===== Эксперименты =====
+## 3. BLINK
 
+When Thonny Python IDE is opened for the first time the main menu is usually hidden.    
+In order to make it visible, press the link in the right corner: 
 
-==== 3. Маячок ====
-При первом запуске редактора Thonny Python IDE главное меню скрыто. Чтоб сделать его видимым, нужно нажать на ссылку в верхнем правом углу окна IDE.
-{{ :malina:1.png?nolink |}}
-Подтвердите изменения
-{{ :malina:2.png?nolink |}}
-После перезапуска IDE изменения вступят в силу.
-{{ :malina:3.png?nolink |}}
-<code python blynk.py>
+![Image](/docs/images/p25-1.png)   
+
+Confirm changes:
+
+![Image](/docs/images/p25-2.png)   
+
+Then Thonny reboots and you get the full interface:
+
+![Image](/docs/images/p25-3.png) 
+
+```python
 import RPi.GPIO as GPIO
 import time
 
@@ -75,11 +78,11 @@ while (i < 5):
     GPIO.output(17, GPIO.LOW)
 
 GPIO.cleanup()
-</code>
+```
 
-==== 4. Выключатель ====
+## 4. BUTTON
 
-<code python toggle.py>
+```python
 import RPi.GPIO as GPIO
 import time
 
@@ -90,24 +93,25 @@ while (True):
     time.sleep(0.5)
     button = GPIO.input(2)
     print(button)
-</code>
+```
 
-Передай переменную button в функцию output, чтобы управлять светодиодом.
+Transfer the `button` variable to the `output` function to control the LED.
 
-<code python>
+```python
 while (True):
 	button = GPIO.input(2)
 	GPIO.output(24, button)
-</code>
+```
 
-Не забудь добавить строку инициализации пина на выход.
+Don't forget to add the pin initialization code for the output:
 
-<code python>
+```python
 GPIO.setup(24, GPIO.OUT)
-</code>
-==== 5. Переключатель ====
+```
 
-<code python switch.py>
+## 5. CONDITIONAL EXPRESSIONS
+
+```python
 import RPi.GPIO as GPIO
 
 GPIO.setmode(GPIO.BCM)
@@ -123,11 +127,11 @@ while (True):
     else:
         GPIO.output(24, GPIO.LOW)
         GPIO.output(26, GPIO.HIGH)
-</code>
+```
 
-==== 6. Управление яркостью ====
+## 6. CONTROLLING THE LEDS
 
-<code python brightnessControl.py>
+```python
 import RPi.GPIO as GPIO
 import time
 
@@ -143,11 +147,11 @@ while (True):
     if (dutyCycle > 100):
         dutyCycle = 0
         pwm.ChangeDutyCycle(dutyCycle)
-</code>
+```
 
-==== 7. Панель управления светом ====
+## 7. LIGHT CONTROL PANELS
 
-<code python function.py>
+```python
 import RPi.GPIO as GPIO
 
 def isPressed(btn, led):
@@ -170,10 +174,10 @@ GPIO.setup(led2, GPIO.OUT)
 while (True):
     isPressed(button1, led1)
     isPressed(button2, led2)
-</code>
+```
 
-==== 8. Массивная оптимизация ====
-<code python oneMassive.py>
+## 8. MASSIVE OPTIMIZATION
+```python
 import RPi.GPIO as GPIO
 import time
 
@@ -190,9 +194,9 @@ for led in leds:
     GPIO.output(led, GPIO.LOW)
 
 GPIO.cleanup()
-</code>
+```
 
-<code python twoMassive.py>
+```python
 import RPi.GPIO as GPIO
 
 def isPressed(btn, led):
@@ -211,10 +215,9 @@ for i in range(4):
 while (True):
     for i in range(4):
         isPressed(buttons[i], leds[i])
-</code>
-==== 9. Web-сервер ====
-
-<code python simpleServer.py>
+```
+## 9. MAKING A SERVER
+```python simpleServer.py>
 from flask import Flask
 app = Flask('simpleServer')
 
@@ -223,14 +226,14 @@ def index():
     return 'Hello Amperka'
 
 app.run(debug=True, port=3000, host='0.0.0.0')
-</code>
-==== 10. Landing page ====
-Ссылка на архив с файлами web-сервера.
-<code>
-http://amperka.github.io/malina_support/web-server.zip
-</code>
+```
+## 10. LANDING PAGE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Web-server archive link bellow: 
+```
+http://amperka.github.io/raspberry_support/docs/web-server.zip
+```
 
-<code python landing.py>
+```python
 from flask import Flask, send_file
 
 app = Flask('landingPage')
@@ -244,7 +247,7 @@ def get_image(filename):
 	return send_file('images/'+filename)
 
 app.run(debug=True, port=3000, host='0.0.0.0')
-</code>
+```
 По умолчанию Thonny Python IDE настроено на открытие только Python файлов
 {{ :malina:4.png?nolink |}}
 Чтобы увидеть все файлы в директории нужно выбрать пункт ''all files''в выпадающем списке
@@ -252,18 +255,18 @@ app.run(debug=True, port=3000, host='0.0.0.0')
 Теперь можно выбрать необходимые файлы
 {{ :malina:6.png?nolink |}}
 Если при перезапуске сервера консоль ответит сообщением «socket.error: [Errno 48] Address already in use», набери команду
-<code>
+```
 ps -fA | grep python
-</code>
+```
 В консоль выведется список запущенных процессов. Найди строку с файлом landing.py. Во второй колонке будет указан номер процесса. Отключи его командой
-<code>
+```
 kill -9 xxx
-</code>
+```
 Где xxx — номер процесса. Команда kill «убивает» процесс, иногда это называют «убить девяткой».
 
 Запусти сервер заново.
-==== 11. Интернет свет ====
-<code python light.py>
+## 11. Интернет свет 
+```python light.py>
 from flask import Flask, send_file
 import RPi.GPIO as GPIO
 
@@ -292,12 +295,12 @@ def turnOff():
     return 'turnedOff'
 
 app.run(debug=True, port=3000, host='0.0.0.0')
-</code>
-==== 12. Обратная связь ====
-<code>
+```
+## 12. Обратная связь 
+```
 sudo pip3 install flask-socketio eventlet
-</code>
-<code python feedback.py>
+```
+```python feedback.py>
 from flask import Flask, send_file
 from flask_socketio import SocketIO
 import RPi.GPIO as GPIO
@@ -325,14 +328,14 @@ def checkButton(receivedData):
 		socketio.emit('button', 'released')
 
 socketio.run(app, port=3000, host='0.0.0.0', debug=True)
-</code>
+```
 Запусти сервер командой
-<code>
+```
 python3 feedback.py
-</code>
-==== 13. Погодный фиджет ====
+```
+## 13. Погодный фиджет 
 
-<code python fydget.py>
+```python fydget.py>
 import requests, json
 from pprint import pprint
  
@@ -360,15 +363,15 @@ pars_weather('rain', '3h', 'mm')
 pars_weather('snow', '3h', 'mm')
 
 print 'temp:', weather['main']['temp'], 'C'
-</code>
+```
 
 Наш вариант погодного фиджета:
-<code>
+```
 amperka.github.io/malina_support/weather.py
-</code>
-==== 14. Бот ВКонтакте ====
+```
+## 14. Бот ВКонтакте 
 
-<code python vk.py>
+```python vk.py>
 # -*- coding: utf-8 -*-
 import time
 import vk_api
@@ -399,16 +402,16 @@ while True:
         text = last_mess['text']
         write_msg(my_id, text, random)    
     time.sleep(1)
-</code>
+```
 
 
-==== 17. Кинотеатр ====
-<code>
+## 17. Кинотеатр 
+```
 amperka.github.io/malina_support/omx-web.zip
-</code>
-==== 18. Поставь торрент заранее ====
+```
+## 18. Поставь торрент заранее 
 
-<code python deluge_vk.py>
+```python deluge_vk.py>
 # -*- coding: utf-8 -*-
 import time
 import vk_api
@@ -452,9 +455,9 @@ while True:
         client.call('core.add_torrent_url', text, {'move_completed_path' : '/home/pi/Torrents'})
         write_msg(my_id, u'Download is begin!', random)
     time.sleep(1)
-</code>
-==== Включить все светодиоды на Облаке ====
-<code python>
+```
+## Включить все светодиоды на Облаке 
+```python
 import RPi.GPIO as GPIO
 import time
  
@@ -471,4 +474,4 @@ for led in leds:
 	GPIO.output(led, GPIO.LOW)
  
 GPIO.cleanup()
-</code>
+```

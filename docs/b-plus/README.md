@@ -17,7 +17,7 @@ Let's get to it.
 ## Page 4. RASPBERRY PI
 Obviuosly, Raspberry Pi 3B+ looks different:
 
-![Image](/b-plus/images/pi.png)
+![Image](/docs/b-plus/images/pi.png)
 
 ## Page 7.
 Shift+alt no longer switches the language. Pity.
@@ -31,15 +31,15 @@ Actually SSH instruction is there, in the book on page 56. Just FYI.
 Step 3 instruction tells the way of saving the file using graphical user interface `File -> Save As`.   
 But most likely you don't see theese menus in Thonny.   
 In this case follow the sequence:   
-![Image](/b-plus/images/p25-1.png)   
+![Image](/docs/b-plus/images/p25-1.png)   
 
 Confirm changes:
 
-![Image](/b-plus/images/p25-2.png)   
+![Image](/docs/b-plus/images/p25-2.png)   
 
 Then Thonny reboots and you get the full interface:
 
-![Image](/b-plus/images/p25-3.png) 
+![Image](/docs/b-plus/images/p25-3.png) 
 
 ## Page 40. LANDING PAGE
 Several corrections needed in this chapter.    
@@ -52,15 +52,15 @@ wget https://goo.gl/LINKLINKLINK -0 web-server.zip
 2. Step 4 tells to open the code in the editor, but doesn't say which one of them.   
 We recommend Thonny for that. Like this:    
 
-![Image](/b-plus/images/p41-1.png) 
+![Image](/docs/b-plus/images/p41-1.png) 
 
 Choose "All files" in the list:
 
-![Image](/b-plus/images/p41-2.png) 
+![Image](/docs/b-plus/images/p41-2.png) 
 
 Now you the .html file is available. Open it:
 
-![Image](/b-plus/images/p41-3.png) 
+![Image](/docs/b-plus/images/p41-3.png) 
 
 3. Sometimes following steps 8 to 12 you can get console message:    
 `socket.error: [Errno 48] Address already in use`   
