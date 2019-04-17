@@ -8,12 +8,12 @@ Also the source code for every chapter is provided.
 If you've got no spare monitor or keyboard you may connect Raspberry Pi via SSH, VNC and FTP protocols.
 Full instruction is provided starting on page 56 of the book. Here are all third party programms you need for that.
 
-## # For Windows
+## For Windows
 - [Angry IP Scanner](http://github.com)
 - [Putty](http://github.com)
 - [VNC-Viewer](http://github.com)
 - [FileZilla](http://github.com)
-## # For MacOS
+## For MacOS
 - [Angry IP Scanner](http://github.com)
 - [VNC-Viewer](http://github.com)
 - [FileZilla](http://github.com)
