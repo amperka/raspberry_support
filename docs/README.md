@@ -375,12 +375,12 @@ print 'temp:', weather['main']['temp'], 'C'
 
 Our own version of weather widget:
 ```
-amperka.github.io/malina_support/weather.py
+amperka.github.io/raspberry_support/weather.py
 ```
 
 ## 14. Movie theater 
 ```
-amperka.github.io/malina_support/omx-web.zip
+amperka.github.io/raspberry_support/omx-web.zip
 ```
 ## Turning on all the leds on the cloud
 ```python

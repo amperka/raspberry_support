@@ -43,10 +43,10 @@ Then Thonny reboots and you get the full interface:
 
 ## Page 40. Landing page
 Several corrections needed in this chapter.    
-1. First of all in step 1 the download link for web-server.zip has been changed.   
+1. First of all in step 1 the download link for web-server.zip has been changed, because Google url shortener is discontinued. Old link may work, but we give you solid one. It is longer, but it definetly works.
 Correct line would be:   
 ```python
-wget https://goo.gl/LINKLINKLINK -0 web-server.zip
+wget https://amperka.github.io/raspberry_support/web-server.zip -0 web-server.zip
 ```
 
 2. Step 4 tells to open the code in the editor, but doesn't say which one of them.   
@@ -150,6 +150,11 @@ pars_weather('rain', '3h', 'mm')
 pars_weather('snow', '3h', 'mm')
  
 print 'temp:', weather['main']['temp'], 'C'
+```
+Here is the substitude for goo.gl link to our version of weather widget:
+
+```python
+wget https://amperka.github.io/raspberry_support/weather.py
 ```
 
 ## Page 55. Autostart and schedule
