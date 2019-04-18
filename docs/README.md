@@ -7,7 +7,7 @@ If you've got no spare monitor or keyboard you may connect Raspberry Pi via SSH,
 Full instruction is provided starting on page 56 of the book. Here are all third party programms you need for that.
 
 ## For Windows
-- [Angry IP Scanner](http://github.com)
+- [Angry IP Scanner](/ipscan-3.5.5-setup.zip)
 - [Putty](http://github.com)
 - [VNC-Viewer](http://github.com)
 - [FileZilla](http://github.com)
@@ -225,7 +225,7 @@ def index():
 
 app.run(debug=True, port=3000, host='0.0.0.0')
 ```
-## 10. Landing page !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+## 10. Landing page
 Web-server archive link bellow: 
 ```
 http://amperka.github.io/raspberry_support/docs/web-server.zip
