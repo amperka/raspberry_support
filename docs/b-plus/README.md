@@ -14,7 +14,7 @@ When you get to the listed page in the book, just look up this instruction to fi
 
 Let's get to it.
 
-## Page 4. RASPBERRY PI
+## Page 4. Raspberry PI
 Obviuosly, Raspberry Pi 3B+ looks different:
 
 ![Image](/docs/b-plus/images/pi.png)
@@ -27,7 +27,7 @@ Nothing wrong with this one.
 Just it says that it is possible to set up Wi-Fi via SSH and doesn't say how.   
 Actually SSH instruction is there, in the book on page 56. Just FYI.
 
-## Page 25. BLINK
+## Page 25. Blink
 Step 3 instruction tells the way of saving the file using graphical user interface `File -> Save As`.   
 But most likely you don't see theese menus in Thonny.   
 In this case follow the sequence:   
@@ -41,7 +41,7 @@ Then Thonny reboots and you get the full interface:
 
 ![Image](/docs/b-plus/images/p25-3.png) 
 
-## Page 40. LANDING PAGE
+## Page 40. Landing page
 Several corrections needed in this chapter.    
 1. First of all in step 1 the download link for web-server.zip has been changed.   
 Correct line would be:   
@@ -74,7 +74,7 @@ kill -9 xxx
 ```
 Where `xxx` is the number of the line.
 
-## Page 44. FEEDBACK
+## Page 44. Feedback
 This chapter uses python version 2 in the book. That's no longer an option.   
 Use Python3 to make the code work.   
 In step 1 put `pip3` instead of `pip`:   
@@ -97,18 +97,18 @@ GPIO.setup(btn, GPIO.IN)
  
 @app.route('/')
 def index():
-	return send_file('feedback.html')
+    return send_file('feedback.html')
  
 @app.route('/images/<filename>')
 def get_image(filename):
-	return send_file('images/'+filename)
+    return send_file('images/'+filename)
  
 @socketio.on('isPressed')
 def checkButton(receivedData):
-	if (GPIO.input(btn) == False):
-		socketio.emit('button', 'pressed')
-	else:
-		socketio.emit('button', 'released')
+    if (GPIO.input(btn) == False):
+        socketio.emit('button', 'pressed')
+    else:
+        socketio.emit('button', 'released')
  
 socketio.run(app, port=3000, host='0.0.0.0', debug=True)
 # debug=True is added in the last line
@@ -119,7 +119,7 @@ And finally use this line to run the server:
 python3 feedback.py
 ```
 
-## Page 48. WEATHER WIDGET
+## Page 48. Weather widget
 Openweathermap.org have changed their API.   
 The correct code now would be:
 ```python
@@ -129,10 +129,10 @@ from pprint import pprint
 url = 'http://api.openweathermap.org/data/2.5/forecast'
  
 payload = {
-	'lat': 'your home city latitude',
-	'lon': 'your home city longitude',
-	'units': 'metric',
-	'appid': 'your_key'
+    'lat': 'your home city latitude',
+    'lon': 'your home city longitude',
+    'units': 'metric',
+    'appid': 'your_key'
 }
  
 res = requests.get(url, params=payload)
@@ -152,7 +152,7 @@ pars_weather('snow', '3h', 'mm')
 print 'temp:', weather['main']['temp'], 'C'
 ```
 
-## Page 55. AUTOSTART AND SCHEDULE
+## Page 55. Autostart and schedule
 There are excessive * symbols in EXAMPLES paragraph.    
 Commands have 5 parameters and asterisk symbol "covers" blank spots.    
 So, the lines have to look like this:   

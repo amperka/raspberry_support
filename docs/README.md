@@ -2,8 +2,6 @@
 Welcome to Raspberry Kit support page. Here you can download all files necessary for our Kit completion.   
 Also the source code for every chapter is provided.   
 
-![Image](/docs/images/title.png)   
-
 ## Setup
 If you've got no spare monitor or keyboard you may connect Raspberry Pi via SSH, VNC and FTP protocols.
 Full instruction is provided starting on page 56 of the book. Here are all third party programms you need for that.
@@ -47,7 +45,7 @@ sudo reboot
 
 After the reboot, disconnect the Ethernet cable and now you can control your Raspberry Pi via Wi-Fi.
 
-## 3. BLINK
+## 3. Blink
 
 When Thonny Python IDE is opened for the first time the main menu is usually hidden.    
 In order to make it visible, press the link in the right corner: 
@@ -80,7 +78,7 @@ while (i < 5):
 GPIO.cleanup()
 ```
 
-## 4. BUTTON
+## 4. Button
 
 ```python
 import RPi.GPIO as GPIO
@@ -99,8 +97,8 @@ Transfer the `button` variable to the `output` function to control the LED.
 
 ```python
 while (True):
-	button = GPIO.input(2)
-	GPIO.output(24, button)
+    button = GPIO.input(2)
+    GPIO.output(24, button)
 ```
 
 Don't forget to add the pin initialization code for the output:
@@ -109,7 +107,7 @@ Don't forget to add the pin initialization code for the output:
 GPIO.setup(24, GPIO.OUT)
 ```
 
-## 5. CONDITIONAL EXPRESSIONS
+## 5. Conditional expressions
 
 ```python
 import RPi.GPIO as GPIO
@@ -129,7 +127,7 @@ while (True):
         GPIO.output(26, GPIO.HIGH)
 ```
 
-## 6. CONTROLLING THE LEDS
+## 6. Controlling the leds
 
 ```python
 import RPi.GPIO as GPIO
@@ -149,7 +147,7 @@ while (True):
         pwm.ChangeDutyCycle(dutyCycle)
 ```
 
-## 7. LIGHT CONTROL PANELS
+## 7. Light control panel
 
 ```python
 import RPi.GPIO as GPIO
@@ -176,7 +174,7 @@ while (True):
     isPressed(button2, led2)
 ```
 
-## 8. MASSIVE OPTIMIZATION
+## 8. Massive optimization
 ```python
 import RPi.GPIO as GPIO
 import time
@@ -216,7 +214,7 @@ while (True):
     for i in range(4):
         isPressed(buttons[i], leds[i])
 ```
-## 9. MAKING A SERVER
+## 9. Making a server
 ```python simpleServer.py>
 from flask import Flask
 app = Flask('simpleServer')
@@ -227,7 +225,7 @@ def index():
 
 app.run(debug=True, port=3000, host='0.0.0.0')
 ```
-## 10. LANDING PAGE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+## 10. Landing page !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 Web-server archive link bellow: 
 ```
 http://amperka.github.io/raspberry_support/docs/web-server.zip
@@ -240,11 +238,11 @@ app = Flask('landingPage')
 
 @app.route('/')
 def index():
-	return send_file('landing.html')
+    return send_file('landing.html')
 
 @app.route('/images/<filename>')
 def get_image(filename):
-	return send_file('images/'+filename)
+    return send_file('images/'+filename)
 
 app.run(debug=True, port=3000, host='0.0.0.0')
 ```
@@ -275,7 +273,7 @@ kill -9 xxx
 Where `xxx` is the number of the line.   
 Then start the server again.
 
-## 11. INTERNET LIGHT
+## 11. Internet light
 ```python
 from flask import Flask, send_file
 import RPi.GPIO as GPIO
@@ -306,7 +304,7 @@ def turnOff():
 
 app.run(debug=True, port=3000, host='0.0.0.0')
 ```
-## 12. FEEDBACK
+## 12. Feedback
 ```
 sudo pip3 install flask-socketio eventlet
 ```
@@ -324,18 +322,18 @@ GPIO.setup(btn, GPIO.IN)
 
 @app.route('/')
 def index():
-	return send_file('feedback.html')
+    return send_file('feedback.html')
 
 @app.route('/images/<filename>')
 def get_image(filename):
-	return send_file('images/'+filename)
+    return send_file('images/'+filename)
 
 @socketio.on('isPressed')
 def checkButton(receivedData):
-	if (GPIO.input(btn) == False):
-		socketio.emit('button', 'pressed')
-	else:
-		socketio.emit('button', 'released')
+    if (GPIO.input(btn) == False):
+        socketio.emit('button', 'pressed')
+    else:
+        socketio.emit('button', 'released')
 
 socketio.run(app, port=3000, host='0.0.0.0', debug=True)
 ```
@@ -343,7 +341,7 @@ Start the server with command:
 ```
 python3 feedback.py
 ```
-## 13. WEATHER WIDGET 
+## 13. Weather widget
 
 ```python fydget.py>
 import requests, json
@@ -352,10 +350,10 @@ from pprint import pprint
 url = 'http://api.openweathermap.org/data/2.5/forecast'
  
 payload = {
-	'lat': 'your home city latitude',
-	'lon': 'your home city longitude',
-	'units': 'metric',
-	'appid': 'your_key'
+    'lat': 'your home city latitude',
+    'lon': 'your home city longitude',
+    'units': 'metric',
+    'appid': 'your_key'
 }
  
 res = requests.get(url, params=payload)
@@ -380,11 +378,11 @@ Our own version of weather widget:
 amperka.github.io/malina_support/weather.py
 ```
 
-## 14. MOVIE THEATER 
+## 14. Movie theater 
 ```
 amperka.github.io/malina_support/omx-web.zip
 ```
-## TURN ON ALL THE LEDS ON THE CLOUD 
+## Turning on all the leds on the cloud
 ```python
 import RPi.GPIO as GPIO
 import time
@@ -393,13 +391,13 @@ GPIO.setmode(GPIO.BCM)
 leds = [10, 12, 13, 14, 15, 16, 17, 18, 19, 21, 24, 26]
  
 for led in leds:
-	GPIO.setup(led, GPIO.OUT)
-	GPIO.output(led, GPIO.HIGH)
+    GPIO.setup(led, GPIO.OUT)
+    GPIO.output(led, GPIO.HIGH)
  
 time.sleep(3)
  
 for led in leds:
-	GPIO.output(led, GPIO.LOW)
+    GPIO.output(led, GPIO.LOW)
  
 GPIO.cleanup()
 ```
