@@ -1,11 +1,9 @@
 # OOPS.. You've got yourself a better Raspberry Pi! It's B+!
 
-It happens to be, that fellows from Raspberry managed to update their Raspberry Pi 3B controller up to Model B+ and we somehow missed it. It means that our book — the one you've found in the box, is somewhat obsolete.
+Good news! Fellows from Raspberry managed to update their Raspberry Pi 3B controller up to Model B+ . It means that our book — the one you've found in the box, is somewhat obsolete, because it was published before the update
 
-Sorry for that.   
-:flushed:
-
-But it's no big deal!    
+But it's no big deal!   
+ 
 This patch is made precisely to fix this.   
 Here you can find up to date instructions to all chapters which have to be modified.
 
