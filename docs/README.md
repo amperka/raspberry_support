@@ -1,17 +1,22 @@
 # Raspberry Kit support
-Welcome to Raspberry Kit support page. Here you can download all files necessary for our Kit completion.   
-Also the source code for every chapter is provided.   
+
+Welcome to Raspberry Kit support page. Here you can download all files necessary for our Kit completion.  
+Also the source code for every chapter is provided.
 
 ## Setup
+
 If you've got no spare monitor or keyboard you may connect Raspberry Pi via SSH, VNC and FTP protocols.
 Full instruction is provided starting on page 56 of the book. Here are all third party programms you need for that.
 
 ## For Windows
+
 - [Angry IP Scanner](http://raspberry.amperka.com/ipscan-3.5.5-setup.zip)
 - [Putty](http://raspberry.amperka.com/putty-64bit-0.71-installer.zip)
 - [VNC-Viewer](http://raspberry.amperka.com/vnc-viewer-6.19.107-windows.zip)
 - [FileZilla](http://raspberry.amperka.com/filezilla_3.41.2_win64_sponsored-setup.zip)
+
 ## For MacOS
+
 - [Angry IP Scanner](http://raspberry.amperka.com/ipscan-mac-3.5.5.zip)
 - [VNC-Viewer](http://raspberry.amperka.com/vnc-viewer-6.19.325-macosx-x86_64.zip)
 - [FileZilla](http://raspberry.amperka.com/filezilla_3.41.2_macosx-x86_sponsored-setup.zip)
@@ -20,14 +25,17 @@ Full instruction is provided starting on page 56 of the book. Here are all third
 
 Connect to Raspberry Pi via SSH.
 
-Open the Wi-Fi configuration file using the built in text editor "Nano"   
-In order to do this, enter the following line:   
+Open the Wi-Fi configuration file using the built in text editor "Nano"  
+In order to do this, enter the following line:
+
 ```python
 sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
 ```
+
 And hit Enter.
 
 The file will open. Add your network parameters as follows:
+
 ```python
 network={
     ssid="your wi-fi name"
@@ -35,8 +43,8 @@ network={
 }
 ```
 
-Close the file using keyboard shortcut ctrl+X (cmd+X for Mac OS). Nano will ask if you want to save the changes.    
-Press Y (Yes), then Enter.    
+Close the file using keyboard shortcut ctrl+X (cmd+X for Mac OS). Nano will ask if you want to save the changes.  
+Press Y (Yes), then Enter.  
 Reboot the system via command `sudo reboot`
 
 ```python
@@ -47,18 +55,18 @@ After the reboot, disconnect the Ethernet cable and now you can control your Ras
 
 ## 3. Blink
 
-When Thonny Python IDE is opened for the first time the main menu is usually hidden.    
-In order to make it visible, press the link in the right corner: 
+When Thonny Python IDE is opened for the first time the main menu is usually hidden.  
+In order to make it visible, press the link in the right corner:
 
-![Image](./images/p25-1.png)   
+![Image](./images/p25-1.png)
 
 Confirm changes:
 
-![Image](./images/p25-2.png)   
+![Image](./images/p25-2.png)
 
 Then Thonny reboots and you get the full interface:
 
-![Image](./images/p25-3.png) 
+![Image](./images/p25-3.png)
 
 ```python
 import RPi.GPIO as GPIO
@@ -175,6 +183,7 @@ while (True):
 ```
 
 ## 8. Massive optimization
+
 ```python
 import RPi.GPIO as GPIO
 import time
@@ -200,7 +209,7 @@ import RPi.GPIO as GPIO
 def isPressed(btn, led):
     state = 1-GPIO.input(btn)
     GPIO.output(led, state)
-    
+
 leds = [12, 13, 14, 18]
 buttons = [2, 3, 4, 8]
 
@@ -209,12 +218,14 @@ for i in range(4):
     print(i, leds[i], buttons[i])
     GPIO.setup(leds[i], GPIO.OUT)
     GPIO.output(buttons[i], GPIO.IN)
-    
+
 while (True):
     for i in range(4):
         isPressed(buttons[i], leds[i])
 ```
+
 ## 9. Making a server
+
 ```python simpleServer.py>
 from flask import Flask
 app = Flask('simpleServer')
@@ -225,8 +236,11 @@ def index():
 
 app.run(debug=True, port=3000, host='0.0.0.0')
 ```
+
 ## 10. Landing page
-Web-server archive link bellow: 
+
+Web-server archive link bellow:
+
 ```
 http://raspberry.amperka.com/web-server.zip
 ```
@@ -247,33 +261,38 @@ def get_image(filename):
 app.run(debug=True, port=3000, host='0.0.0.0')
 ```
 
-Step 4 tells to open the code in the editor.   
-We recommend Thonny for that. But it needs some tweaking:    
+Step 4 tells to open the code in the editor.  
+We recommend Thonny for that. But it needs some tweaking:
 
-![Image](./images/p41-1.png) 
+![Image](./images/p41-1.png)
 
 Choose "All files" in the list:
 
-![Image](./images/p41-2.png) 
+![Image](./images/p41-2.png)
 
 Now the .html file is available. Open it:
 
-![Image](./images/p41-3.png) 
+![Image](./images/p41-3.png)
 
-3. Sometimes following steps 8 to 12 you can get console message:    
-`socket.error: [Errno 48] Address already in use`   
-It means that server is still running. In this case use a command:   
+3. Sometimes following steps 8 to 12 you can get console message:  
+   `socket.error: [Errno 48] Address already in use`  
+   It means that server is still running. In this case use a command:
+
 ```python
 ps -fA | grep python
 ```
+
 You will get the list of all processes running. Find the line `landing.py`, check it's number in the second column and kill it with command:
+
 ```python
 kill -9 xxx
 ```
-Where `xxx` is the number of the line.   
+
+Where `xxx` is the number of the line.  
 Then start the server again.
 
 ## 11. Internet light
+
 ```python
 from flask import Flask, send_file
 import RPi.GPIO as GPIO
@@ -304,10 +323,13 @@ def turnOff():
 
 app.run(debug=True, port=3000, host='0.0.0.0')
 ```
+
 ## 12. Feedback
+
 ```
 sudo pip3 install flask-socketio eventlet
 ```
+
 ```python
 from flask import Flask, send_file
 from flask_socketio import SocketIO
@@ -337,25 +359,28 @@ def checkButton(receivedData):
 
 socketio.run(app, port=3000, host='0.0.0.0', debug=True)
 ```
+
 Start the server with command:
+
 ```
 python3 feedback.py
 ```
+
 ## 13. Weather widget
 
 ```python fydget.py>
 import requests, json
 from pprint import pprint
- 
+
 url = 'http://api.openweathermap.org/data/2.5/forecast'
- 
+
 payload = {
     'lat': 'your home city latitude',
     'lon': 'your home city longitude',
     'units': 'metric',
     'appid': 'your_key'
 }
- 
+
 res = requests.get(url, params=payload)
 data = json.loads(res.text)
 weather = data['list'][0]
@@ -374,30 +399,34 @@ print 'temp:', weather['main']['temp'], 'C'
 ```
 
 Our own version of weather widget:
+
 ```
 raspberry.amperka.com/weather.py
 ```
 
-## 14. Movie theater 
+## 14. Movie theater
+
 ```
 raspberry.amperka.com/omx-web.zip
 ```
+
 ## Turning on all the leds on the cloud
+
 ```python
 import RPi.GPIO as GPIO
 import time
- 
+
 GPIO.setmode(GPIO.BCM)
 leds = [10, 12, 13, 14, 15, 16, 17, 18, 19, 21, 24, 26]
- 
+
 for led in leds:
     GPIO.setup(led, GPIO.OUT)
     GPIO.output(led, GPIO.HIGH)
- 
+
 time.sleep(3)
- 
+
 for led in leds:
     GPIO.output(led, GPIO.LOW)
- 
+
 GPIO.cleanup()
 ```
