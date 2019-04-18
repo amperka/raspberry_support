@@ -248,25 +248,35 @@ def get_image(filename):
 
 app.run(debug=True, port=3000, host='0.0.0.0')
 ```
-По умолчанию Thonny Python IDE настроено на открытие только Python файлов
-{{ :malina:4.png?nolink |}}
-Чтобы увидеть все файлы в директории нужно выбрать пункт ''all files''в выпадающем списке
-{{ :malina:5.png?nolink |}}
-Теперь можно выбрать необходимые файлы
-{{ :malina:6.png?nolink |}}
-Если при перезапуске сервера консоль ответит сообщением «socket.error: [Errno 48] Address already in use», набери команду
-```
+
+Step 4 tells to open the code in the editor.   
+We recommend Thonny for that. But it needs some tweaking:    
+
+![Image](/docs/images/p41-1.png) 
+
+Choose "All files" in the list:
+
+![Image](/docs/images/p41-2.png) 
+
+Now the .html file is available. Open it:
+
+![Image](/docs/images/p41-3.png) 
+
+3. Sometimes following steps 8 to 12 you can get console message:    
+`socket.error: [Errno 48] Address already in use`   
+It means that server is still running. In this case use a command:   
+```python
 ps -fA | grep python
 ```
-В консоль выведется список запущенных процессов. Найди строку с файлом landing.py. Во второй колонке будет указан номер процесса. Отключи его командой
-```
+You will get the list of all processes running. Find the line `landing.py`, check it's number in the second column and kill it with command:
+```python
 kill -9 xxx
 ```
-Где xxx — номер процесса. Команда kill «убивает» процесс, иногда это называют «убить девяткой».
+Where `xxx` is the number of the line.   
+Then start the server again.
 
-Запусти сервер заново.
-## 11. Интернет свет 
-```python light.py>
+## 11. INTERNET LIGHT
+```python
 from flask import Flask, send_file
 import RPi.GPIO as GPIO
 
@@ -296,11 +306,11 @@ def turnOff():
 
 app.run(debug=True, port=3000, host='0.0.0.0')
 ```
-## 12. Обратная связь 
+## 12. FEEDBACK
 ```
 sudo pip3 install flask-socketio eventlet
 ```
-```python feedback.py>
+```python
 from flask import Flask, send_file
 from flask_socketio import SocketIO
 import RPi.GPIO as GPIO
@@ -329,11 +339,11 @@ def checkButton(receivedData):
 
 socketio.run(app, port=3000, host='0.0.0.0', debug=True)
 ```
-Запусти сервер командой
+Start the server with command:
 ```
 python3 feedback.py
 ```
-## 13. Погодный фиджет 
+## 13. WEATHER WIDGET 
 
 ```python fydget.py>
 import requests, json
@@ -342,10 +352,10 @@ from pprint import pprint
 url = 'http://api.openweathermap.org/data/2.5/forecast'
  
 payload = {
-	'lat': 'широта_твоего_города',
-	'lon': 'долгота_твоего_города',
+	'lat': 'your home city latitude',
+	'lon': 'your home city longitude',
 	'units': 'metric',
-	'appid': 'твой_ключ'
+	'appid': 'your_key'
 }
  
 res = requests.get(url, params=payload)
@@ -365,98 +375,16 @@ pars_weather('snow', '3h', 'mm')
 print 'temp:', weather['main']['temp'], 'C'
 ```
 
-Наш вариант погодного фиджета:
+Our own version of weather widget:
 ```
 amperka.github.io/malina_support/weather.py
 ```
-## 14. Бот ВКонтакте 
 
-```python vk.py>
-# -*- coding: utf-8 -*-
-import time
-import vk_api
-
-from socket import gethostbyname
- 
-vk = vk_api.VkApi(token = 'твой токен')
- 
-param = {
-    'count' : 1,
-    'time_offset' : 5,
-    'filter' : 'unread'
-}
-
-def write_msg(user_id, msg, random):
-    vk.method('messages.send', {
-        'user_id': user_id,
-        'message': msg,
-        'random_id':random,
-    })
-while True:
-    response = vk.method('messages.getConversations', param)
-    if response['items']:
-        item = response['items'][0]
-        last_mess = item['last_message']
-        random = last_mess['random_id']
-        my_id = last_mess['peer_id']
-        text = last_mess['text']
-        write_msg(my_id, text, random)    
-    time.sleep(1)
-```
-
-
-## 17. Кинотеатр 
+## 14. MOVIE THEATER 
 ```
 amperka.github.io/malina_support/omx-web.zip
 ```
-## 18. Поставь торрент заранее 
-
-```python deluge_vk.py>
-# -*- coding: utf-8 -*-
-import time
-import vk_api
-
-from deluge_client import DelugeRPCClient
-from pprint import pprint
- 
-vk = vk_api.VkApi(token = 'твой токен')
-
-
-values = {
-    'count' : 1,
-    'offset' : 0,
-    'filter' : 'unread'
-}
- 
-client = DelugeRPCClient(
-    '127.0.0.1',
-    58846,
-    'pi',
-    'raspberry'
-)
- 
-client.connect()
- 
-def write_msg(user_id, msg , random):
-    vk.method('messages.send', {
-        'user_id': user_id,
-        'message': msg,
-        'random_id':random,
-    })
- 
-while True:
-    response = vk.method('messages.getConversations', values)
-    if response['items']:
-        item = response['items'][0]
-        last_mess = item['last_message']
-        random = last_mess['random_id']
-        my_id = last_mess['peer_id']
-        text = last_mess['text'] 
-        client.call('core.add_torrent_url', text, {'move_completed_path' : '/home/pi/Torrents'})
-        write_msg(my_id, u'Download is begin!', random)
-    time.sleep(1)
-```
-## Включить все светодиоды на Облаке 
+## TURN ON ALL THE LEDS ON THE CLOUD 
 ```python
 import RPi.GPIO as GPIO
 import time

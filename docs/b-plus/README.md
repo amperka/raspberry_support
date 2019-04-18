@@ -58,7 +58,7 @@ Choose "All files" in the list:
 
 ![Image](/docs/b-plus/images/p41-2.png) 
 
-Now you the .html file is available. Open it:
+Now the .html file is available. Open it:
 
 ![Image](/docs/b-plus/images/p41-3.png) 
 
@@ -152,7 +152,7 @@ pars_weather('snow', '3h', 'mm')
 print 'temp:', weather['main']['temp'], 'C'
 ```
 
-## Page 55. AUTO START AND SCHEDULE
+## Page 55. AUTOSTART AND SCHEDULE
 There are excessive * symbols in EXAMPLES paragraph.    
 Commands have 5 parameters and asterisk symbol "covers" blank spots.    
 So, the lines have to look like this:   
