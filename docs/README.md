@@ -8,13 +8,13 @@ Full instruction is provided starting on page 56 of the book. Here are all third
 
 ## For Windows
 - [Angry IP Scanner](http://amperka.github.io/raspberry_support/ipscan-3.5.5-setup.zip)
-- [Putty](http://github.com)
-- [VNC-Viewer](http://github.com)
-- [FileZilla](http://github.com)
+- [Putty](http://amperka.github.io/raspberry_support/putty-64bit-0.71-installer.zip)
+- [VNC-Viewer](http://amperka.github.io/raspberry_support/vnc-viewer-6.19.107-windows.zip)
+- [FileZilla](http://amperka.github.io/raspberry_support/filezilla_3.41.2_win64_sponsored-setup.zip)
 ## For MacOS
-- [Angry IP Scanner](http://github.com)
-- [VNC-Viewer](http://github.com)
-- [FileZilla](http://github.com)
+- [Angry IP Scanner](http://amperka.github.io/raspberry_support/ipscan-mac-3.5.5.zip)
+- [VNC-Viewer](http://amperka.github.io/raspberry_support/vnc-viewer-6.19.325-macosx-x86_64.zip)
+- [FileZilla](http://amperka.github.io/raspberry_support/filezilla_3.41.2_macosx-x86_sponsored-setup.zip)
 
 ## Wi-Fi
 
