@@ -12,7 +12,7 @@ When you get to the listed page in the book, just look up this instruction to fi
 
 Let's get to it.
 
-## Page 4. Raspberry PI
+## Page 4. Raspberry Pi
 Obviuosly, Raspberry Pi 3B+ looks different:
 
 ![Image](./images/pi.png)
