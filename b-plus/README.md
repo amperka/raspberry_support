@@ -1,6 +1,6 @@
 # OOPS.. You've got yourself a better Raspberry Pi! It's B+!
 
-Good news! Fellows from Raspberry managed to update their Raspberry Pi 3B controller up to Model B+ . It means that our book — the one you've found in the box, is somewhat obsolete, because it was published before the update
+Good news! Fellows from Raspberry Foundation managed to update their Raspberry Pi 3 Model B controller up to Model B+ . It means that our book — the one you've found in the box, is somewhat obsolete, because it was published before the update
 
 But it's no big deal!   
  
@@ -12,7 +12,7 @@ When you get to the listed page in the book, just look up this instruction to fi
 
 Let's get to it.
 
-## Page 4. Raspberry PI
+## Page 4. Raspberry Pi
 Obviuosly, Raspberry Pi 3B+ looks different:
 
 ![Image](/docs/b-plus/images/pi.png)
