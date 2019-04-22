@@ -25,10 +25,9 @@ Full instruction is provided starting on page 56 of the book. Here are all third
 
 Connect to Raspberry Pi via SSH.
 
-Open the Wi-Fi configuration file using the built in text editor "Nano"  
-In order to do this, enter the following line:
+Open the Wi-Fi configuration file using the built in text editor "Nano". In order to do this, enter the following line:
 
-```python
+```bash
 sudo nano /etc/wpa_supplicant/wpa_supplicant.conf
 ```
 
@@ -43,11 +42,9 @@ network={
 }
 ```
 
-Close the file using keyboard shortcut ctrl+X (cmd+X for Mac OS). Nano will ask if you want to save the changes.  
-Press Y (Yes), then Enter.  
-Reboot the system via command `sudo reboot`
+Close the file using keyboard shortcut ctrl+X (cmd+X for Mac OS). Nano will ask if you want to save the changes. Press Y (Yes), then Enter. Reboot the system via command `sudo reboot`
 
-```python
+```bash
 sudo reboot
 ```
 
@@ -55,8 +52,7 @@ After the reboot, disconnect the Ethernet cable and now you can control your Ras
 
 ## 3. Blink
 
-When Thonny Python IDE is opened for the first time the main menu is usually hidden.  
-In order to make it visible, press the link in the right corner:
+When Thonny Python IDE is opened for the first time the main menu is usually hidden. In order to make it visible, press the link in the right corner:
 
 ![Image](./images/p25-1.png)
 
@@ -226,7 +222,7 @@ while (True):
 
 ## 9. Making a server
 
-```python simpleServer.py>
+```python
 from flask import Flask
 app = Flask('simpleServer')
 
@@ -239,10 +235,10 @@ app.run(debug=True, port=3000, host='0.0.0.0')
 
 ## 10. Landing page
 
-Web-server archive link bellow:
+Web-server archive download line bellow:
 
-```
-http://raspberry.amperka.com/web-server.zip
+```bash
+wget http://raspberry.amperka.com/web-server.zip -0 web-server.zip
 ```
 
 ```python
@@ -261,30 +257,17 @@ def get_image(filename):
 app.run(debug=True, port=3000, host='0.0.0.0')
 ```
 
-Step 4 tells to open the code in the editor.  
-We recommend Thonny for that. But it needs some tweaking:
+Sometimes following steps 8 to 12 you can get console message:  
+`socket.error: [Errno 48] Address already in use`  
+It means that server is still running. In this case use a command:
 
-![Image](./images/p41-1.png)
-
-Choose "All files" in the list:
-
-![Image](./images/p41-2.png)
-
-Now the .html file is available. Open it:
-
-![Image](./images/p41-3.png)
-
-3. Sometimes following steps 8 to 12 you can get console message:  
-   `socket.error: [Errno 48] Address already in use`  
-   It means that server is still running. In this case use a command:
-
-```python
+```bash
 ps -fA | grep python
 ```
 
 You will get the list of all processes running. Find the line `landing.py`, check it's number in the second column and kill it with command:
 
-```python
+```bash
 kill -9 xxx
 ```
 
@@ -326,7 +309,7 @@ app.run(debug=True, port=3000, host='0.0.0.0')
 
 ## 12. Feedback
 
-```
+```bash
 sudo pip3 install flask-socketio eventlet
 ```
 
@@ -362,7 +345,7 @@ socketio.run(app, port=3000, host='0.0.0.0', debug=True)
 
 Start the server with command:
 
-```
+```bash
 python3 feedback.py
 ```
 
@@ -400,14 +383,17 @@ print 'temp:', weather['main']['temp'], 'C'
 
 Our own version of weather widget:
 
-```
-raspberry.amperka.com/weather.py
+```bash
+wget raspberry.amperka.com/weather.py
 ```
 
 ## 14. Movie theater
 
-```
-raspberry.amperka.com/omx-web.zip
+The add-on download and unzipping sequence:
+
+```bash
+wget raspberry.amperka.com/omx-web.zip -0 omx-web.zip
+unzip omx-web.zip
 ```
 
 ## Turning on all the leds on the cloud
