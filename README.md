@@ -351,7 +351,7 @@ python3 feedback.py
 
 ## 13. Weather widget
 
-```python fydget.py>
+```python
 import requests, json
 from pprint import pprint
 
