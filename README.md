@@ -148,7 +148,7 @@ while (True):
     dutyCycle = dutyCycle + 1
     if (dutyCycle > 100):
         dutyCycle = 0
-        pwm.ChangeDutyCycle(dutyCycle)
+    pwm.ChangeDutyCycle(dutyCycle)
 ```
 
 ## 7. Light control panel
