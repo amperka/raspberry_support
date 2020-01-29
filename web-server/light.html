@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 	<head>
-		<title>Internet Light</title>
+		<title>LED remote control</title>
 		<meta charset="utf-8" />
 		<style>
 		.head {
@@ -45,7 +45,7 @@
 		var send = function(){
 			var xhr = new XMLHttpRequest();
 			
-			output.innerHTML = 'Wait…';
+			output.innerHTML = 'In progress…';
 			
 			if (on === true) {
 				xhr.open('GET', 'turnOn', true);
@@ -57,7 +57,7 @@
 				console.log(xhr.readyState, xhr.response);
 				if (xhr.readyState === 4) {
 					if (xhr.response === '') {
-						output.innerHTML = 'No connection';
+						output.innerHTML = 'No connection to the server';
 					} else {
 						output.innerHTML = '&nbsp;';					
 						if (on === true) {
@@ -80,10 +80,10 @@
 	</head>
 	<body>
 		<div class="head">
-			<h1>Internet Light</h1>
-			<img src="/images/logo.png" alt="); picture is lost">
+			<h1>LED remote control</h1>
+			<img src="/images/logo.png" alt="Image is missing :(">
 			<br>
-			Powered by Raspberry Pi
+			Powered Raspberry Pi
 		</div>
 		<div class="content">
 			<button class="button" onclick="send()" id="button">Turn on</button>
