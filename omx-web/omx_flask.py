@@ -1,19 +1,21 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-# Импортируем Flask для web-сервера
-from flask import Flask, send_file
+# subprocess module allows you to spawn and manage new processes.
+import subprocess
+# Regular expressions are special strings for a search patterns.
+import re
+# os module helps in working with files and folders on the disk.
+import os
+# string module helps with file name manipulation.
+import string
 
-import time
-import subprocess  # Будет запускать omxplayer и управять им вместо нас
-import re  # Регулярные выражения — гибкие, но сложные конструкции для поиска в тексте по шаблону
-import os, os.path  # Помогут в работе с файлами и папками на диске
-import string  # Поможет в небольших манипуляциях с именами файлов
+# Import Flask to create a web server.
+from flask import Flask, send_file
 
 app = Flask(__name__)
 
-# Задаём в массиве типы фйлов, которые сможем воспроизвести
-
+# Create a list of file types that we can play.
 PLAYABLE_TYPES = [
     ".264",
     ".avi",
@@ -59,17 +61,18 @@ PLAYABLE_TYPES = [
     ".mkv",
 ]
 
-# Склеим полные пути к файлам: ярлыку на папку с фильмами, папке с интерфейсом
+# Create full paths to the files: the folder with the movies,
+# the folder with the interface.
 MEDIA_RDIR = app.root_path + "/" + "media/"
 PAGE_FOLDER = app.root_path + "/" + "omxfront/"
 PAGE_NAME = "interface.htm"
 
 play_list = []
 
-# Переменная, в которой будет храниться процесс omxplayer
+# omxplayer process.
 omxproc = None
 
-# Словарь команд управления плеером
+# Dictionary with player control commands.
 command_send = {
     "speedup": "1",
     "speeddown": "2",
@@ -134,7 +137,8 @@ def Path(path):
     itemlist = []
     if path.startswith(".."):
         path = ""
-    # Проводим манипуляции с файлами и папками в системе: выделяем имена, расширения из полного пути
+    # Manipulating files and folders in the system: select names,
+    # extensions from the full path.
     for item in os.listdir(os.path.join(MEDIA_RDIR, path)):
         if os.path.isfile(os.path.join(MEDIA_RDIR, path, item)):
             fname = os.path.splitext(item)[0]
@@ -157,7 +161,7 @@ def Path(path):
     list.sort(itemlist, key=lambda alpha: alpha[1])
     list.sort(itemlist, key=lambda dirs: dirs[2])
     outputlist = []
-    # Формируем ответ из списка файлов и папок
+    # Create an answer from the list of files and folders.
     for line in itemlist:
         outputlist.append(
             '{"path":"'
@@ -188,40 +192,41 @@ def other(name):
 def omx_send(data):
     global omxproc
     if omxproc is not None:
-        # Если omxplayer запущен, можно отправлять команды
+        # If omxplayer is running, you can send commands.
         if omxproc.poll() is None:
             try:
                 omxproc.stdin.write(data.encode("utf-8"))
-                # Если поступила команда на выключение
+                # If a shutdown command is received.
                 if data == "q":
-                    # Дадим плееру 5 секунд на отключение.
+                    # Let's give the player 5 seconds to turn off.
                     omxproc.wait(timeout=5)
                     omxproc = None
-            # Если плеер не завершает работу, выключим принудительно
+            # If the player does not shut down, turn it off forcibly.
             except subprocess.TimeoutExpired:
                 print(
                     "Closing timeout is over. The process will be terminated forcibly."
                 )
                 subprocess.Popen("killall omxplayer.bin", shell=True)
                 omxproc = None
-            # Если возникнет какая-то другая ошибка, выведем информацию о ней
+            # If any other error occurs, display information about it.
             except OSError as err:
                 print("Error: ", err)
         else:
             omxproc = None
 
 
-# Включаем воспроизведение файла
+# Turn on file playback.
 def omx_play(filename):
     global omxproc
-    # Закрываем все плееры
+    # Close all players.
     subprocess.Popen("killall omxplayer.bin", stderr=subprocess.DEVNULL, shell=True)
-    # Полный путь к видеофайлу
+    # Full path to video file.
     filepath = os.path.join(MEDIA_RDIR, filename)
-    # Запускаем плеер
-    # -o local — выводит звук на разъём Jack 3.5
-    # -o hdmi — выводит звук на динамики телевизора (если они есть)
-    # -o both — выводит звук и на Jack 3.5, и на телевизор
+    # Start omxplayer with flag:
+    # -o local — sound is output through the 3.5mm Jack.
+    # -o hdmi — sound is output through the TV speakers.
+    # -o both — sound is output through the 3.5 mm jack and speakers
+    #    of the TV.
     omxproc = subprocess.Popen(
         "omxplayer -o hdmi " + filepath, stdin=subprocess.PIPE, bufsize=0, shell=True
     )
@@ -230,7 +235,3 @@ def omx_play(filename):
 
 if __name__ == "__main__":
     app.run(port=8080, host="0.0.0.0", threaded=True)
-
-# Во время отладки консоль может выводить сообщение «».
-# Это означает, что сокеты заняты другой программой. Чтобы их освободить, выполни команду в консоли
-# sudo fuser 8080/tcp -k
