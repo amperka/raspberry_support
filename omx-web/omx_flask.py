@@ -3,10 +3,13 @@
 
 # subprocess module allows you to spawn and manage new processes.
 import subprocess
+
 # Regular expressions are special strings for a search patterns.
 import re
+
 # os module helps in working with files and folders on the disk.
 import os
+
 # string module helps with file name manipulation.
 import string
 
@@ -152,7 +155,9 @@ def Path(path):
             fname = string.capwords(fname.strip())
             singletuple = (os.path.join(path, item), fname, "dir")
         itemlist.append(singletuple)
-    itemlist = [f for f in itemlist if not os.path.split(f[0])[1].startswith(".")]
+    itemlist = [
+        f for f in itemlist if not os.path.split(f[0])[1].startswith(".")
+    ]
     itemlist = [
         f
         for f in itemlist
@@ -204,7 +209,8 @@ def omx_send(data):
             # If the player does not shut down, turn it off forcibly.
             except subprocess.TimeoutExpired:
                 print(
-                    "Closing timeout is over. The process will be terminated forcibly."
+                    "Closing timeout is over.",
+                    "The process will be terminated forcibly."
                 )
                 subprocess.Popen("killall omxplayer.bin", shell=True)
                 omxproc = None
@@ -219,7 +225,9 @@ def omx_send(data):
 def omx_play(filename):
     global omxproc
     # Close all players.
-    subprocess.Popen("killall omxplayer.bin", stderr=subprocess.DEVNULL, shell=True)
+    subprocess.Popen(
+        "killall omxplayer.bin", stderr=subprocess.DEVNULL, shell=True
+    )
     # Full path to video file.
     filepath = os.path.join(MEDIA_RDIR, filename)
     # Start omxplayer with flag:
@@ -228,7 +236,10 @@ def omx_play(filename):
     # -o both — sound is output through the 3.5 mm jack and speakers
     #    of the TV.
     omxproc = subprocess.Popen(
-        "omxplayer -o hdmi " + filepath, stdin=subprocess.PIPE, bufsize=0, shell=True
+        "omxplayer -o hdmi " + filepath,
+        stdin=subprocess.PIPE,
+        bufsize=0,
+        shell=True,
     )
     omx_send("")
 
