@@ -27,10 +27,10 @@ Full instruction is provided in the beginning of the book. Here are all third pa
 ```python
 import RPi.GPIO as GPIO
 import time
- 
+
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(17, GPIO.OUT)
- 
+
 try:
     while True:
         time.sleep(0.5)
@@ -49,10 +49,10 @@ finally:
 ```python
 import RPi.GPIO as GPIO
 import time
- 
+
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(2, GPIO.IN)
- 
+
 while True:
     time.sleep(0.5)
     button = GPIO.input(2)
@@ -73,16 +73,16 @@ Don't forget to add the pin initialization code for the output:
 GPIO.setup(24, GPIO.OUT)
 ```
 
-Finally adding exceptions handling:
+Finally, adding exceptions handling:
 
 ```python
 import RPi.GPIO as GPIO
 import time
- 
+
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(2, GPIO.IN)
 GPIO.setup(24, GPIO.OUT)
- 
+
 try:
     while True:
         button = GPIO.input(2)
@@ -98,12 +98,12 @@ finally:
 
 ```python
 import RPi.GPIO as GPIO
- 
+
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(8, GPIO.IN)
 GPIO.setup(24, GPIO.OUT)
 GPIO.setup(26, GPIO.OUT)
- 
+
 try:
     while True:
         button = GPIO.input(8)
@@ -113,7 +113,7 @@ try:
         else:
             GPIO.output(24, GPIO.LOW)
             GPIO.output(26, GPIO.HIGH)
- 
+
 except KeyboardInterrupt:
     print('The program was stopped by keyboard.')
 finally:
@@ -126,13 +126,13 @@ finally:
 ```python
 import RPi.GPIO as GPIO
 import time
- 
+
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(18, GPIO.OUT)
 pwm = GPIO.PWM(18, 1000)
 dutyCycle = 50
 pwm.start(dutyCycle)
- 
+
 try:
     while True:
         time.sleep(0.01)
@@ -140,7 +140,7 @@ try:
         if dutyCycle > 100:
             dutyCycle = 0
         pwm.ChangeDutyCycle(dutyCycle)
- 
+
 except KeyboardInterrupt:
     print('The program was stopped by keyboard.')
 finally:
@@ -152,26 +152,26 @@ finally:
 
 ```python
 import RPi.GPIO as GPIO
- 
- 
+
+
 def isPressed(btn, led):
     if GPIO.input(btn) == False:
         GPIO.output(led, GPIO.HIGH)
     else:
         GPIO.output(led, GPIO.LOW)
- 
+
 
 button1 = 3
 button2 = 4
 led1 = 14
 led2 = 15
- 
+
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(button1, GPIO.IN)
 GPIO.setup(button2, GPIO.IN)
 GPIO.setup(led1, GPIO.OUT)
 GPIO.setup(led2, GPIO.OUT)
- 
+
 try:
     while True:
         isPressed(button1, led1)
@@ -188,39 +188,39 @@ finally:
 ```python
 import RPi.GPIO as GPIO
 import time
- 
+
 GPIO.setmode(GPIO.BCM)
 leds = [12, 13, 14, 18]
- 
+
 for led in leds:
     GPIO.setup(led, GPIO.OUT)
     GPIO.output(led, GPIO.HIGH)
- 
+
 time.sleep(3)
- 
+
 for led in leds:
     GPIO.output(led, GPIO.LOW)
- 
+
 GPIO.cleanup()
 ```
 
 ```python
 import RPi.GPIO as GPIO
- 
- 
+
+
 def isPressed(btn, led):
     state = 1 - GPIO.input(btn)
     GPIO.output(led, state)
- 
- 
+
+
 leds = [12, 13, 14, 18]
 buttons = [2, 3, 4, 8]
- 
+
 GPIO.setmode(GPIO.BCM)
 for i in range(4):
     GPIO.setup(leds[i], GPIO.OUT)
     GPIO.setup(buttons[i], GPIO.IN)
- 
+
 try:
     while True:
         for i in range(4):
@@ -236,15 +236,15 @@ finally:
 
 ```python
 from flask import Flask
- 
+
 app = Flask('simpleServer')
- 
- 
+
+
 @app.route('/')
 def index():
     return 'Hello, Amperka!'
- 
- 
+
+
 app.run(port=3000, host='0.0.0.0')
 ```
 
@@ -258,17 +258,17 @@ wget http://raspberry.amperka.com/web-server.zip -0 web-server.zip
 
 ```python
 from flask import Flask, send_file
- 
+
 app = Flask('landingPage')
- 
+
 @app.route('/')
 def index():
     return send_file('landing.html')
- 
+
 @app.route('/images/<filename>')
 def get_image(filename):
     return send_file('images/'+filename)
- 
+
 app.run(port=3000, host='0.0.0.0')
 ```
 
@@ -294,36 +294,36 @@ Then start the server again.
 ```python
 from flask import Flask, send_file
 import RPi.GPIO as GPIO
- 
+
 led = 18
- 
+
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(led, GPIO.OUT)
- 
+
 app = Flask('lightControl')
- 
- 
+
+
 @app.route('/')
 def index():
     return send_file('light.html')
- 
- 
+
+
 @app.route('/images/<filename>')
 def get_image(filename):
     return send_file('images/' + filename)
- 
- 
+
+
 @app.route('/turnOn')
 def turnOn():
     GPIO.output(led, GPIO.HIGH)
     return 'turnedOn'
- 
- 
+
+
 @app.route('/turnOff')
 def turnOff():
     GPIO.output(led, GPIO.LOW)
     return 'turnedOff'
- 
+
 try: 
     app.run(port=3000, host='0.0.0.0')
 finally:
@@ -337,34 +337,34 @@ finally:
 from flask import Flask, send_file
 from flask_socketio import SocketIO
 import RPi.GPIO as GPIO
- 
+
 app = Flask('feedback')
 socketio = SocketIO(app)
- 
+
 btn = 2
- 
+
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(btn, GPIO.IN)
- 
- 
+
+
 @app.route('/')
 def index():
     return send_file('feedback.html')
- 
- 
+
+
 @app.route('/images/<filename>')
 def get_image(filename):
     return send_file('images/' + filename)
- 
- 
+
+
 @socketio.on('isPressed')
 def checkButton(receivedData):
     if GPIO.input(btn) == False:
         socketio.emit('button', 'pressed')
     else:
         socketio.emit('button', 'released')
- 
- 
+
+
 try: 
     socketio.run(app, port=3000, host='0.0.0.0')
 finally:
@@ -376,22 +376,22 @@ finally:
 
 ```python
 import requests, json
- 
+
 url = "http://api.openweathermap.org/data/2.5/forecast"
- 
+
 payload = {
     "lat": "your_city_latitude",
     "lon": "your_city_longitude",
     "units": "metric",
     "appid": "your_key",
 }
- 
+
 res = requests.get(url, params=payload)
 data = json.loads(res.text)
- 
+
 weather = data["list"][0]
- 
- 
+
+
 def pars_weather(weatherType, timeRange, measurementUnits):
     if (weatherType in weather) and (
         timeRange in weather[weatherType].keys()
@@ -404,8 +404,8 @@ def pars_weather(weatherType, timeRange, measurementUnits):
         )
     else:
         print(weatherType, ": ", "none")
- 
- 
+
+
 pars_weather("clouds", "all", "%")
 pars_weather("rain", "3h", "mm")
 pars_weather("snow", "3h", "mm")
@@ -433,18 +433,18 @@ http://raspberry.amperka.com/omx-web.zip
 ```python
 import RPi.GPIO as GPIO
 import time
- 
+
 GPIO.setmode(GPIO.BCM)
 leds = [10, 12, 13, 14, 15, 16, 17, 18, 19, 21, 24, 26]
- 
+
 for led in leds:
     GPIO.setup(led, GPIO.OUT)
     GPIO.output(led, GPIO.HIGH)
- 
+
 time.sleep(3)
- 
+
 for led in leds:
     GPIO.output(led, GPIO.LOW)
- 
+
 GPIO.cleanup()
 ```
