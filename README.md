@@ -94,7 +94,7 @@ finally:
     print('GPIO cleanup completed')
 ```
 
-## 5. Conditional expressions
+## 5. Switch
 
 ```python
 import RPi.GPIO as GPIO
@@ -121,7 +121,7 @@ finally:
     print('GPIO cleanup completed.')
 ```
 
-## 6. Controlling the leds
+## 6. LED brightness
 
 ```python
 import RPi.GPIO as GPIO
@@ -232,7 +232,7 @@ finally:
     print('GPIO cleanup completed.')
 ```
 
-## 9. Making a server
+## 9. Web server
 
 ```python
 from flask import Flask
@@ -414,13 +414,19 @@ print("temp:", weather["main"]["temp"], "C")
 
 Our own version of weather phidget:
 
-raspberry.amperka.com/weather.py
+http://raspberry.amperka.com/weather.py
 
-## 14. Movie theater
+## 16. Torrents
 
-The add-on download and unzipping sequence:
+Theese are the movies that are distributed via [CC (Creative Commons) license](https://creativecommons.org/licenses/by/4.0). That means, that one can share and adapt these materials in any way. You only have to give a credit to the original authors.
 
-raspberry.amperka.com/omx-web.zip
+- ["BIG BUCK BUNNY"](http://raspberry.amperka.com/Big_Buck_Bunny_1080p.torrent) — a funny blender.io movie
+
+## 17. Movie theater
+
+OMX-web.zip link:
+
+http://raspberry.amperka.com/omx-web.zip
 
 ## Turning on all the leds on the cloud
 
