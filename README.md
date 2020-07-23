@@ -420,31 +420,11 @@ http://raspberry.amperka.com/weather.py
 
 Theese are the movies that are distributed via [CC (Creative Commons) license](https://creativecommons.org/licenses/by/4.0). That means, that one can share and adapt these materials in any way. You only have to give a credit to the original authors.
 
-- ["BIG BUCK BUNNY"](http://raspberry.amperka.com/Big_Buck_Bunny_1080p.torrent) — a funny blender.io movie
+- ["BIG BUCK BUNNY"](http://raspberry.amperka.com/Big_Buck_Bunny_1080p.torrent) — a funny blender.io movie about a big bunny seeking peace and quiet.
+- ["Battleship Potemkin"](http://raspberry.amperka.com/Battleship_Potemkin_1925.torrent) — a Sergei Eisenstein film about the notorious mutiny on Battleship Potemkin in 1905 in Russian Empire. Despite being Soviet propaganda and being filmed in 1925, the film still is considered one of the best movies in history. (Has 100% on Rotten tomatos)
 
 ## 17. Movie theater
 
 OMX-web.zip link:
 
 http://raspberry.amperka.com/omx-web.zip
-
-## Turning on all the leds on the cloud
-
-```python
-import RPi.GPIO as GPIO
-import time
-
-GPIO.setmode(GPIO.BCM)
-leds = [10, 12, 13, 14, 15, 16, 17, 18, 19, 21, 24, 26]
-
-for led in leds:
-    GPIO.setup(led, GPIO.OUT)
-    GPIO.output(led, GPIO.HIGH)
-
-time.sleep(3)
-
-for led in leds:
-    GPIO.output(led, GPIO.LOW)
-
-GPIO.cleanup()
-```
