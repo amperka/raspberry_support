@@ -166,7 +166,7 @@
 				}, 100);
 			});
 			socket.on('disconnect', function() {
-				output.innerHTML = 'Lost connection';
+				output.innerHTML = 'Connection lost';
 				connected = false;
 				if (intID) {
 					intID = clearInterval(intID);
