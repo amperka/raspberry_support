@@ -418,7 +418,7 @@ http://raspberry.amperka.com/weather.py
 
 ## 16. Torrents
 
-Theese are the movies that are distributed via [CC (Creative Commons) license](https://creativecommons.org/licenses/by/4.0). That means, that one can share and modify these materials in any way. You only have to give a credit to the original authors.
+There are the movies that are distributed via [CC (Creative Commons) license](https://creativecommons.org/licenses/by/4.0). That means, that one can share and modify these materials in any way. You only have to give a credit to the original authors. Here is one of those:
 
 - ["BIG BUCK BUNNY"](http://raspberry.amperka.com/Big_Buck_Bunny_1080p.torrent) — a funny Blender Foundation movie about a big bunny seeking peace and quiet. Use .mp4 file.
 
