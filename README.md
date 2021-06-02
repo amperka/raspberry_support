@@ -1,14 +1,14 @@
 # Raspberry Kit support
 
-Welcome to Malina V4: Raspberry kit support page. Here you can download all files necessary for our kit completion.
-Also the source code for every project is provided.
+Welcome to Malina V4: Raspberry kit support page. Here you can download all the files necessary for our kit completion.
+Also, the source code for every project is provided.
 
 ![Image](./images/title.png)
 
 ## Setup
 
-If you've got no spare monitor or keyboard you may connect Raspberry Pi via SSH, VNC and FTP protocols.
-Full instruction is provided in the beginning of the book. Here are all third party programms you need for that.
+If you've got no spare monitor or keyboard, you may connect Raspberry Pi via SSH, VNC, and FTP protocols.
+Complete instruction is provided at the beginning of the book. Here are all the third-party programs you need for that.
 
 ## For Windows
 
@@ -272,22 +272,21 @@ def get_image(filename):
 app.run(port=3000, host='0.0.0.0')
 ```
 
-Sometimes following steps 8 to 12 you can get console message:  
+Sometimes following steps 8 to 12, you can get console message:  
 `socket.error: [Errno 48] Address already in use`  
-It means that server is still running. In this case use a command:
+It means that the server is still running. In this case, use a command:
 
 ```bash
 ps -u | grep python
 ```
 
-You will get the list of all processes running. Find the line `landing.py`, check it's number in the second column and kill it with command:
+You will get the list of all processes running. Find the line `landing.py`, check its number in the second column, and kill it with the command:
 
 ```bash
 kill -9 xxx
 ```
 
-Where `xxx` is the number of the line.  
-Then start the server again.
+where `xxx` is the number of the line. Then start the server again.
 
 ## 11. LED remote control
 
@@ -418,7 +417,7 @@ http://raspberry.amperka.com/weather.py
 
 ## 16. Torrents
 
-Theese are the movies that are distributed via [CC (Creative Commons) license](https://creativecommons.org/licenses/by/4.0). That means, that one can share and modify these materials in any way. You only have to give a credit to the original authors.
+There are the movies that are distributed via [CC (Creative Commons) license](https://creativecommons.org/licenses/by/4.0). That means, that one can share and modify these materials in any way. You only have to give a credit to the original authors. Here is one of those:
 
 - ["BIG BUCK BUNNY"](http://raspberry.amperka.com/Big_Buck_Bunny_1080p.torrent) — a funny Blender Foundation movie about a big bunny seeking peace and quiet. Use .mp4 file.
 
