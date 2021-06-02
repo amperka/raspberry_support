@@ -418,9 +418,10 @@ http://raspberry.amperka.com/weather.py
 
 ## 16. Torrents
 
-Theese are the movies that are distributed via [CC (Creative Commons) license](https://creativecommons.org/licenses/by/4.0). That means, that one can share and modify these materials in any way. You only have to give a credit to the original authors.
+Theese are the movies that are distributed via [CC (Creative Commons) license](https://creativecommons.org/licenses/by/4.0). That means, that one can share and adapt these materials in any way. You only have to give a credit to the original authors.
 
-- ["BIG BUCK BUNNY"](http://raspberry.amperka.com/Big_Buck_Bunny_1080p.torrent) — a funny Blender Foundation movie about a big bunny seeking peace and quiet. Use .mp4 file.
+- ["BIG BUCK BUNNY"](http://raspberry.amperka.com/Big_Buck_Bunny_1080p.torrent) — a funny blender.io movie about a big bunny seeking peace and quiet.
+- ["Battleship Potemkin"](http://raspberry.amperka.com/Battleship_Potemkin_1925.torrent) — a Sergei Eisenstein film about the notorious mutiny on Battleship Potemkin in 1905 in Russian Empire. Despite being Soviet propaganda and being filmed in 1925, the film still is considered one of the best movies in history. (Has 100% on Rotten tomatos)
 
 ## 17. Movie theater
 
